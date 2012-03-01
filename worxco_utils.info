@@ -1,0 +1,5 @@
+name = WorxCo Utils
+description = Common utilities used by custom Worx Modules and/or Features
+package = Worx Components
+version = 7.x-1.0-alpha1
+core = 7.x

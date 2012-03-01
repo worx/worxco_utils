@@ -1,0 +1,29 @@
+<?php
+
+/** 
+ * Implements hook_menu().
+ */
+function worxco_utils_menu() {
+  $items['admin/config/worx_features'] = array(
+    'title' => 'Worx Features',
+    'description' => 'Configure Worx Features',
+    'position' => 'right',
+    'weight' => -20,
+    'page callback' => 'system_admin_menu_block_page',
+    'access arguments' => array('access administration pages'),
+    'file' => 'system.admin.inc',
+    'file path' => drupal_get_path('module', 'system'),
+  );
+  
+  return $items;
+}
+
+/**
+ * Code to be added later
+ * function worxco_utils_panels_pre_render($panel, $renderer) {
+ *   global $user;
+ *   if($user->uid == 1) {
+ *     print_r($panel);
+ *   }
+ * } 
+ */
