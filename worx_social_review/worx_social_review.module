@@ -1,5 +1,17 @@
 <?php
 
+/**
+ * Implements hook_permission().
+ */
+function worx_social_review_permission() {
+  return array(
+    'social review email' => array(
+      'title' => t('Social Review Email'),
+      'description' => t('Send social review emails'),
+    )
+  );
+}
+
 /** 
  * implements hook_menu().
  */
@@ -29,7 +41,7 @@ function worx_social_review_menu() {
     'description' => 'Send review links email',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('worx_social_review_email_form'),
-    'access arguments' => array('Social Review Email'),
+    'access arguments' => array('social review email'),
     'file' => 'worx_social_review_email_form.inc',
     'file path' => drupal_get_path('module', 'worx_social_review'),
     'type' => MENU_NORMAL_ITEM,
@@ -39,7 +51,7 @@ function worx_social_review_menu() {
     'description' => 'Send review links email',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('worx_social_review_email_form'),
-    'access arguments' => array('Social Review Email'),
+    'access arguments' => array('social review email'),
     'file' => 'worx_social_review_email_form.inc',
     'file path' => drupal_get_path('module', 'worx_social_review'),
     'type' => MENU_NORMAL_ITEM,
