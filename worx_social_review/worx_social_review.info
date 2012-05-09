@@ -2,4 +2,4 @@ name = Worx Social Review
 description = This module allows site operators to easily request a local search review from their customers.
 core = 7.x
 package = Worx Components
-version = 7.x-1.1
+version = 7.x-1.3

@@ -24,17 +24,33 @@ function worx_social_review_email_form() {
     '#collapsed' => FALSE,
     '#collapsible' => TRUE,
   );
+  $output = array();
+  $string = array();
+  if (variable_get('worx_social_review_google_link', '')) {
+    $string[] = '@google';
+    $output['@google'] = '[google] - Google Review Link';
+  }
+  if (variable_get('worx_social_review_bing_link', '')) {
+    $string[] = '@bing';
+    $output['bing'] = '[bing] - Bing Review Link';
+  }
+  if (variable_get('worx_social_review_yahoo_link', '')) {
+    $string[] = '@yahoo';
+    $output['yahoo'] = '[yahoo] - Yahoo Review Link';
+  }
+  if (variable_get('worx_social_review_yp_link', '')) {
+    $string[] = '@yp';
+    $output['yp'] = '[yp] - Yellow Pages Review Link';
+  }
+  if (variable_get('worx_social_review_foursquare_link', '')) {
+    $string[] = '@foursquare';
+    $output['foursqaure'] = '[foursqaure] - Foursquare Review Link';
+  }
   $form['tokens']['token_list'] = array(
     '#type' => 'item',
-    '#markup' => t('<p>@google<br />@yahoo<br />@bing<br />@yp<br />@foursquare<br /></p>', array(
-      '@google' => '[google] - Google Review Link.',
-      '@yahoo' => '[google] - Yahoo Review Link.',
-      '@bing' => '[google] - Bing Review Link.',
-      '@yp' => '[google] - Yellow Pages Review Link.',
-      '@foursquare' => '[google] - FourSquare Review Link.',
-    )),
+    '#markup' => '<p>' . t(implode('<br />', $string), $output ) . '</p>',
   );
-  
+
   $body = variable_get('email_body', '');
   $form['email_body'] = array(
     '#type' => 'text_format',
@@ -60,11 +76,11 @@ function worx_social_review_email_form_submit($form, $form_state) {
   $to = $form_state['values']['email_to'];
   $params['body'] = $form_state['values']['email_body']['value'];
   
-  $params['google'] = variable_get('worx_socail_review_google_link', '') ? variable_get('worx_socail_review_google_link', '') : 'Error: No link. Please contact site administrator';
-  $params['yahoo'] = variable_get('worx_socail_review_yahoo_link', '') ? variable_get('worx_socail_review_yahoo_link', '') : 'Error: No link. Please contact site administrator';
-  $params['bing'] = variable_get('worx_socail_review_bing_link', '') ? variable_get('worx_socail_review_bing_link', '') : 'Error: No link. Please contact site administrator';
-  $params['yp'] = variable_get('worx_socail_review_yp_link', '') ? variable_get('worx_socail_review_yp_link', '') : 'Error: No link. Please contact site administrator';
-  $params['foursquare'] = variable_get('worx_socail_review_foursquare_link', '') ? variable_get('worx_socail_review_foursquare_link', '') : 'Error: No link. Please contact site administrator';
+  $params['google'] = variable_get('worx_social_review_google_link', '') ? variable_get('worx_social_review_google_link', '') : 'Error: No link. Please contact site administrator';
+  $params['yahoo'] = variable_get('worx_social_review_yahoo_link', '') ? variable_get('worx_social_review_yahoo_link', '') : 'Error: No link. Please contact site administrator';
+  $params['bing'] = variable_get('worx_social_review_bing_link', '') ? variable_get('worx_social_review_bing_link', '') : 'Error: No link. Please contact site administrator';
+  $params['yp'] = variable_get('worx_social_review_yp_link', '') ? variable_get('worx_social_review_yp_link', '') : 'Error: No link. Please contact site administrator';
+  $params['foursquare'] = variable_get('worx_social_review_foursquare_link', '') ? variable_get('worx_social_review_foursquare_link', '') : 'Error: No link. Please contact site administrator';
     
   drupal_mail('worx_social_review', 'social_review', $to, $language = 'UND', $params, $from);
   drupal_set_message('Email successfully sent to ' . $form_state['values']['email_to']);

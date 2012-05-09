@@ -54,7 +54,17 @@ function worx_social_review_menu() {
     'access arguments' => array('social review email'),
     'file' => 'worx_social_review_email_form.inc',
     'file path' => drupal_get_path('module', 'worx_social_review'),
-    'type' => MENU_NORMAL_ITEM,
+    'type' => MENU_DEFAULT_LOCAL_TASK,
+  );
+  $items['admin/social_review/email/template'] = array(
+    'title' => 'Social Review Email Template',
+    'description' => 'Adjust email template',
+    'page callback' => 'drupal_get_form',
+    'page arguments' => array('worx_social_review_email_template_form'),
+    'access arguments' => array('social review email'),
+    'file' => 'worx_social_review_email_template_form.inc',
+    'file path' => drupal_get_path('module', 'worx_social_review'),
+    'type' => MENU_LOCAL_TASK,
   );
   
   return $items;
