@@ -49,6 +49,20 @@ function worx_social_review_settings_form() {
     '#required' => FALSE,
     '#description' => t("Please enter the link for Four Square's review."),
   );
+  $form['worx_social_review_urban_spoon_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t("Urban Spoon's Review Link"),
+    '#default_value' => variable_get('worx_social_review_urban_spoon_link', ''),
+    '#required' => FALSE,
+    '#description' => t("Please enter the link for Urban Spoon's review."),
+  );
+  $form['worx_social_review_ta_link'] = array(
+    '#type' => 'textfield',
+    '#title' => t("Trip Advisor's Review Link"),
+    '#default_value' => variable_get('worx_social_review_ta_link', ''),
+    '#required' => FALSE,
+    '#description' => t("Please enter the link for Trip Advisor's review."),
+  );
   
   return system_settings_form($form);
 }

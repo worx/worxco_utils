@@ -21,7 +21,7 @@ function worx_social_review_menu() {
     'description' => 'Set initial links for Social Review',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('worx_social_review_settings_form'),
-    'access arguments' => array('worx features admin'),
+    'access arguments' => array('social review email'),
     'file' => 'worx_social_review.admin.inc',
     'file path' => drupal_get_path('module', 'worx_social_review'),
     'type' => MENU_NORMAL_ITEM,
@@ -31,7 +31,7 @@ function worx_social_review_menu() {
     'description' => 'Set initial links for Social Review',
     'page callback' => 'drupal_get_form',
     'page arguments' => array('worx_social_review_settings_form'),
-    'access arguments' => array('worx features admin'),
+    'access arguments' => array('social review email'),
     'file' => 'worx_social_review.admin.inc',
     'file path' => drupal_get_path('module', 'worx_social_review'),
     'type' => MENU_DEFAULT_LOCAL_TASK,
@@ -93,6 +93,8 @@ function worx_social_review_mail($key, &$message, $params) {
           '[bing]',
           '[yp]',
           '[foursquare]',
+          '[urbanspoon]',
+          '[ta]',
         ),
         $replace = array(
           $params['google'],
@@ -100,6 +102,8 @@ function worx_social_review_mail($key, &$message, $params) {
           $params['bing'],
           $params['yp'],
           $params['foursquare'],
+          $params['urbanspoon'],
+          $params['ta'],
         ),
         $subject = $params['body']
       );
